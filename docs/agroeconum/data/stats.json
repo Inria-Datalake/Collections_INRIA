@@ -57,7 +57,11 @@
       3
     ],
     [
-      "REPORT",
+      "VIDEO",
+      1
+    ],
+    [
+      "PRESCONF",
       1
     ],
     [
@@ -65,15 +69,11 @@
       1
     ],
     [
+      "REPORT",
+      1
+    ],
+    [
       "COUV",
-      1
-    ],
-    [
-      "VIDEO",
-      1
-    ],
-    [
-      "PRESCONF",
       1
     ]
   ],
@@ -99,15 +99,15 @@
       16
     ],
     [
-      "Villenave d'Ornon",
-      11
-    ],
-    [
       "Cestas",
       11
     ],
     [
-      "Bâtiment Bois de l'Etang5 bd D",
+      "Villenave d'Ornon",
+      11
+    ],
+    [
+      "Bâtiment Bois de l'Etang5 bd DescartesCh",
       9
     ],
     [
@@ -119,19 +119,19 @@
       9
     ],
     [
-      "chemin de Borde-Rouge -Auzevil",
-      8
-    ],
-    [
       "Sophia Antipolis",
       8
     ],
     [
-      "avenue de la pomme de Pin - CS",
+      "chemin de Borde-Rouge -Auzeville Tolosan",
       8
     ],
     [
-      "Inovallée655 avenue de l'Europ",
+      "avenue de la pomme de Pin - CS  Ardon -",
+      8
+    ],
+    [
+      "Inovallée655 avenue de l'Europe38330 Mon",
       8
     ],
     [
@@ -207,11 +207,11 @@
       7
     ],
     [
-      "Modélisation Systémique Appliquée aux Ruminants",
+      "Mathématiques et Informatique Appliquées du Génome à l'Environnement [Jouy-En-Josas]",
       5
     ],
     [
-      "Génétique Diversité et Ecophysiologie des Céréales",
+      "Modélisation Systémique Appliquée aux Ruminants",
       5
     ]
   ],
@@ -245,14 +245,6 @@
       14
     ],
     [
-      "Nicolas Maurice",
-      12
-    ],
-    [
-      "Dominique Arrouays",
-      12
-    ],
-    [
       "Sthyve Junior Tatho Djeanou",
       12
     ],
@@ -261,20 +253,48 @@
       12
     ],
     [
-      "Riccardo Vicedomini",
-      11
+      "Nicolas Maurice",
+      12
+    ],
+    [
+      "Dominique Arrouays",
+      12
     ],
     [
       "Sylvain Prigent",
       11
     ],
     [
-      "Nicolas Baghdadi",
-      10
+      "Riccardo Vicedomini",
+      11
     ],
     [
       "Alessio Ragno",
       10
+    ],
+    [
+      "Pierre Bonnet",
+      10
+    ],
+    [
+      "Nicolas Baghdadi",
+      10
+    ],
+    [
+      "Youssef Fouad",
+      9
+    ],
+    [
+      "Didier Michot",
+      9
+    ],
+    [
+      "David James Sherman",
+      8
+    ],
+    [
+      "Lucie Martin",
+      8
     ]
   ],
   "top_domains": [
@@ -307,12 +327,16 @@
       23
     ],
     [
+      "Bibs",
+      22
+    ],
+    [
       "Bv",
       22
     ],
     [
-      "Bibs",
-      22
+      "Sds",
+      20
     ],
     [
       "Ee",
@@ -321,10 +345,6 @@
     [
       "Info Ai",
       17
-    ],
-    [
-      "Sdu",
-      16
     ]
   ],
   "open_access": 224
