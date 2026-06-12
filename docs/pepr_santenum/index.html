@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PEPR Santé Numérique — Tableau de bord</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#0a1628;color:#e0f4ff;min-height:100vh;}
+  
+  /* BANNER */
+  .banner{width:100%;height:180px;position:relative;overflow:hidden;}
+  .banner img{width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.75;}
+  .banner-overlay{position:absolute;inset:0;background:linear-gradient(135deg, #0a1628 0%, #1e3a5f 40%, #0077b6 70%, #00b4d8 100%);opacity:0.55;}
+  .banner-title{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem;}
+  .banner-title h1{font-size:2rem;font-weight:800;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,0.7);letter-spacing:1px;}
+  .banner-title p{font-size:1rem;color:#90e0ef;margin-top:0.4rem;text-shadow:0 1px 6px rgba(0,0,0,0.5);}
+  
+  /* STATS CARDS */
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;padding:1.5rem;}
+  .stat-card{background:rgba(255,255,255,0.05);border:1px solid rgba(0,180,216,0.3);border-radius:12px;padding:1.2rem;text-align:center;backdrop-filter:blur(10px);transition:transform .2s;}
+  .stat-card:hover{transform:translateY(-3px);}
+  .stat-card .value{font-size:2.2rem;font-weight:700;color:#00b4d8;}
+  .stat-card .label{font-size:0.8rem;color:#90e0ef;margin-top:0.3rem;text-transform:uppercase;letter-spacing:.5px;}
+  
+  /* CHARTS GRID */
+  .charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:1.2rem;padding:0 1.5rem 1.5rem;}
+  .chart-card{background:rgba(255,255,255,0.05);border:1px solid rgba(0,180,216,0.3);border-radius:12px;padding:1.2rem;backdrop-filter:blur(10px);}
+  .chart-card h3{font-size:0.9rem;color:#90e0ef;text-transform:uppercase;letter-spacing:.5px;margin-bottom:1rem;border-bottom:1px solid rgba(0,180,216,0.3);padding-bottom:.6rem;}
+  .chart-card canvas{max-height:280px;}
+  .chart-card.wide{grid-column:span 2;}
+  
+  /* FOOTER */
+  footer{text-align:center;padding:1.5rem;color:rgba(255,255,255,0.3);font-size:0.75rem;border-top:1px solid rgba(0,180,216,0.3);}
+  
+  @media(max-width:700px){
+    .banner{height:120px;}
+    .banner-title h1{font-size:1.3rem;}
+    .charts-grid{grid-template-columns:1fr;}
+    .chart-card.wide{grid-column:span 1;}
+  }
+</style>
+</head>
+<body>
+
+<div class="banner">
+  <img src="banner.jpg" alt="PEPR Santé Numérique"/>
+  <div class="banner-overlay"></div>
+  <div class="banner-title">
+    <h1>PEPR Santé Numérique</h1>
+    <p>Tableau de bord scientométrique</p>
+  </div>
+</div>
+
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="value">323</div>
+    <div class="label">Publications</div>
+  </div>
+  <div class="stat-card">
+    <div class="value">4</div>
+    <div class="label">Années</div>
+  </div>
+  <div class="stat-card">
+    <div class="value">15</div>
+    <div class="label">Laboratoires</div>
+  </div>
+  <div class="stat-card">
+    <div class="value">7</div>
+    <div class="label">Pays</div>
+  </div>
+  <div class="stat-card">
+    <div class="value">91%</div>
+    <div class="label">Open Access</div>
+  </div>
+</div>
+
+<div class="charts-grid">
+
+  <!-- Publications par année -->
+  <div class="chart-card">
+    <h3>📅 Publications par année</h3>
+    <canvas id="yearsChart"></canvas>
+  </div>
+
+  <!-- Types de documents -->
+  <div class="chart-card">
+    <h3>📄 Types de documents</h3>
+    <canvas id="docTypeChart"></canvas>
+  </div>
+
+  <!-- Top villes -->
+  <div class="chart-card">
+    <h3>🏙️ Top villes</h3>
+    <canvas id="citiesChart"></canvas>
+  </div>
+
+  <!-- Top pays -->
+  <div class="chart-card">
+    <h3>🌍 Top pays</h3>
+    <canvas id="countriesChart"></canvas>
+  </div>
+
+  <!-- Top laboratoires -->
+  <div class="chart-card wide">
+    <h3>🔬 Top laboratoires</h3>
+    <canvas id="labsChart"></canvas>
+  </div>
+
+  <!-- Top auteurs -->
+  <div class="chart-card wide">
+    <h3>👩‍🔬 Top auteurs (par nb. de publications)</h3>
+    <canvas id="authorsChart"></canvas>
+  </div>
+
+  <!-- Domaines -->
+  <div class="chart-card wide">
+    <h3>🧬 Domaines scientifiques</h3>
+    <canvas id="domainsChart"></canvas>
+  </div>
+
+</div>
+
+<footer>
+  Données issues de HAL — Collection PEPR Santé Numérique • Généré automatiquement • 323 publications
+</footer>
+
+<script>
+const accent = '#00b4d8';
+const accent2 = '#90e0ef';
+const barColors = ['#00b4d8', '#0077b6', '#90e0ef', '#023e8a', '#48cae4', '#ade8f4'];
+const textColor = '#e0f4ff';
+const gridColor = 'rgba(255,255,255,0.08)';
+
+Chart.defaults.color = textColor;
+Chart.defaults.borderColor = gridColor;
+
+const baseOpts = {
+  responsive: true,
+  plugins: {
+    legend: { labels: { color: textColor, font: { size: 11 } } },
+    tooltip: { backgroundColor: 'rgba(0,0,0,0.8)', titleColor: accent, bodyColor: textColor }
+  },
+  scales: {
+    x: { ticks: { color: textColor }, grid: { color: gridColor } },
+    y: { ticks: { color: textColor }, grid: { color: gridColor } }
+  }
+};
+
+// Years - bar
+new Chart(document.getElementById('yearsChart'), {
+  type: 'bar',
+  data: { labels: ["2023", "2024", "2025", "2026"], datasets: [{ label: 'Publications', data: [1, 92, 165, 65], backgroundColor: accent, borderRadius: 4 }] },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: false } } }
+});
+
+// Doc types - doughnut
+new Chart(document.getElementById('docTypeChart'), {
+  type: 'doughnut',
+  data: { labels: ["Conf\u00e9rences", "Articles", "Non class\u00e9", "Posters", "Logiciels", "Autres", "COUV", "Pr\u00e9sentation"], datasets: [{ data: [112, 91, 65, 23, 10, 7, 5, 4], backgroundColor: ["#00b4d8", "#0077b6", "#90e0ef", "#023e8a", "#48cae4", "#ade8f4"], borderWidth: 2, borderColor: '#0a1628' }] },
+  options: { ...baseOpts, scales: undefined, plugins: { ...baseOpts.plugins, legend: { position: 'right', labels: { color: textColor, font: { size: 11 } } } } }
+});
+
+// Cities - horizontal bar
+new Chart(document.getElementById('citiesChart'), {
+  type: 'bar',
+  data: { labels: ["Paris", "Sophia Antipolis", "Rennes", "Marseille", "LIMOGES", "Lyon", "Gif sur Yvette", "Orsay", "Villeurbanne", "Talence"], datasets: [{ data: [69, 37, 30, 25, 25, 14, 13, 12, 11, 9], backgroundColor: barColors.map((c,i)=>c+'cc'), borderRadius: 4 }] },
+  options: { ...baseOpts, indexAxis: 'y', plugins: { ...baseOpts.plugins, legend: { display: false } } }
+});
+
+// Countries - bar
+new Chart(document.getElementById('countriesChart'), {
+  type: 'bar',
+  data: { labels: ["FR", "IT", "CH", "US", "LB", "DK", "BE"], datasets: [{ label: 'Entrées', data: [315, 3, 1, 1, 1, 1, 1], backgroundColor: accent2, borderRadius: 4 }] },
+  options: { ...baseOpts, plugins: { ...baseOpts.plugins, legend: { display: false } } }
+});
+
+// Labs - horizontal bar
+new Chart(document.getElementById('labsChart'), {
+  type: 'bar',
+  data: { labels: ["Centre Inria d'Universit\u00e9 C\u00f4te d'Azur", "Institut de Neurosciences des Syst\u00e8mes", "Pharmacologie et Transplantation", "Centre Inria de Paris", "IFR49 - Neurospin - CEA", "Centre Inria de l'Universit\u00e9 de Rennes", "Laboratoire Interdisciplinaire des Scien\u2026", "Services r\u00e9partis, Architectures, MOd\u00e9li\u2026", "Paris Jourdan Sciences Economiques", "Institut de Recherche Math\u00e9matique de Re\u2026"], datasets: [{ data: [36, 20, 17, 16, 13, 12, 12, 11, 11, 10], backgroundColor: barColors.map((c,i)=>c+'cc'), borderRadius: 4 }] },
+  options: { ...baseOpts, indexAxis: 'y', plugins: { ...baseOpts.plugins, legend: { display: false } }, scales: { x: { ticks: { color: textColor }, grid: { color: gridColor } }, y: { ticks: { color: textColor, font: { size: 10 } }, grid: { color: gridColor } } } }
+});
+
+// Authors - horizontal bar
+new Chart(document.getElementById('authorsChart'), {
+  type: 'bar',
+  data: { labels: ["Jean-Baptiste Woillard", "S\u00e9bastien Benzekry", "Carine Milcent", "Sarah Cohen-Boulakia", "Viktor Jirsa", "Hugo Barbot", "David Causeur", "Maryline Laurent", "Yuna Blum", "Magali Richard", "Pierre Marquet", "Rodolphe Thi\u00e9baut"], datasets: [{ data: [20, 19, 16, 13, 12, 12, 12, 12, 11, 11, 11, 11], backgroundColor: barColors.map((c,i)=>c+'cc'), borderRadius: 4 }] },
+  options: { ...baseOpts, indexAxis: 'y', plugins: { ...baseOpts.plugins, legend: { display: false } } }
+});
+
+// Domains - horizontal bar
+new Chart(document.getElementById('domainsChart'), {
+  type: 'bar',
+  data: { labels: ["Info", "Sdv", "Stat", "Info Bi", "Info Ai", "Scco", "Shs", "Math"], datasets: [{ data: [223, 146, 86, 38, 38, 35, 33, 32], backgroundColor: barColors.map((c,i)=>c+'cc'), borderRadius: 4 }] },
+  options: { ...baseOpts, indexAxis: 'y', plugins: { ...baseOpts.plugins, legend: { display: false } } }
+});
+</script>
+</body>
+</html>

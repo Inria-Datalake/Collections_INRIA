@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Collections Inria — Tableaux de bord</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Segoe UI',system-ui,sans-serif;background:#08101f;color:#e8f0ff;min-height:100vh;}
+  
+  header{text-align:center;padding:3rem 1rem 2rem;background:linear-gradient(180deg,#0d1f3c,#08101f);}
+  header img{height:50px;margin-bottom:1rem;opacity:.8;}
+  header h1{font-size:2rem;font-weight:800;color:#fff;letter-spacing:1px;}
+  header p{color:#7bafd4;margin-top:.5rem;font-size:1rem;}
+  
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;padding:2rem;max-width:1100px;margin:0 auto;}
+  
+  .card{border-radius:16px;overflow:hidden;transition:transform .2s, box-shadow .2s;text-decoration:none;display:block;}
+  .card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,.5);}
+  
+  .card-banner{height:120px;position:relative;overflow:hidden;}
+  .card-banner img{width:100%;height:100%;object-fit:cover;object-position:center;}
+  .card-banner-overlay{position:absolute;inset:0;}
+  
+  .card-body{padding:1.3rem 1.5rem 1.5rem;}
+  .card-tag{font-size:.7rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:.5rem;}
+  .card-title{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:.4rem;}
+  .card-desc{font-size:.85rem;line-height:1.5;opacity:.8;}
+  .card-stats{display:flex;gap:1rem;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1);}
+  .card-stat{text-align:center;}
+  .card-stat .n{font-size:1.2rem;font-weight:700;}
+  .card-stat .l{font-size:.7rem;opacity:.6;text-transform:uppercase;}
+  .card-cta{display:inline-block;margin-top:1rem;padding:.5rem 1.2rem;border-radius:20px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+  
+  /* PEPR - blue */
+  .card-pepr{background:linear-gradient(135deg,#0a1628,#1e3a5f);}
+  .card-pepr .card-banner-overlay{background:linear-gradient(135deg,rgba(10,22,40,.3),rgba(0,119,182,.3));}
+  .card-pepr .card-tag{color:#00b4d8;}
+  .card-pepr .card-desc{color:#a0d4ff;}
+  .card-pepr .card-stat .n{color:#00b4d8;}
+  .card-pepr .card-cta{background:rgba(0,180,216,.15);color:#00b4d8;border:1px solid rgba(0,180,216,.4);}
+  .card-pepr .card-stats{border-color:rgba(0,180,216,.2);}
+  
+  /* AGRO - green */
+  .card-agro{background:linear-gradient(135deg,#0d2b1a,#1a4d2e);}
+  .card-agro .card-banner-overlay{background:linear-gradient(135deg,rgba(13,43,26,.3),rgba(46,125,50,.3));}
+  .card-agro .card-tag{color:#4CAF50;}
+  .card-agro .card-desc{color:#a5d6a7;}
+  .card-agro .card-stat .n{color:#66bb6a;}
+  .card-agro .card-cta{background:rgba(76,175,80,.15);color:#66bb6a;border:1px solid rgba(76,175,80,.4);}
+  .card-agro .card-stats{border-color:rgba(76,175,80,.2);}
+  
+  /* Interstices - dark blue/cyan */
+  .card-inter{background:linear-gradient(135deg,#050d1f,#0a1a3a);}
+  .card-inter .card-banner-overlay{background:linear-gradient(135deg,rgba(5,13,31,.3),rgba(0,80,200,.3));}
+  .card-inter .card-tag{color:#00e5ff;}
+  .card-inter .card-desc{color:#b0bff0;}
+  .card-inter .card-stat .n{color:#00e5ff;}
+  .card-inter .card-cta{background:rgba(0,229,255,.1);color:#00e5ff;border:1px solid rgba(0,229,255,.3);}
+  .card-inter .card-stats{border-color:rgba(0,229,255,.2);}
+  
+  footer{text-align:center;padding:2rem;color:rgba(255,255,255,.25);font-size:.75rem;border-top:1px solid rgba(255,255,255,.05);}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Collections Inria</h1>
+  <p>Tableaux de bord scientométriques — données HAL</p>
+</header>
+
+<div class="grid">
+
+  <a class="card card-pepr" href="pepr_santenum/index.html">
+    <div class="card-banner">
+      <img src="pepr_santenum/banner.jpg" alt="PEPR Santé Numérique"/>
+      <div class="card-banner-overlay"></div>
+    </div>
+    <div class="card-body">
+      <div class="card-tag">PEPR · Santé</div>
+      <div class="card-title">PEPR Santé Numérique</div>
+      <div class="card-desc">Programme et équipements prioritaires de recherche en santé numérique</div>
+      <div class="card-stats">
+        <div class="card-stat"><div class="n">323</div><div class="l">Publications</div></div>
+        <div class="card-stat"><div class="n">2023–26</div><div class="l">Période</div></div>
+        <div class="card-stat"><div class="n">FR+</div><div class="l">International</div></div>
+      </div>
+      <div class="card-cta">Voir le tableau de bord →</div>
+    </div>
+  </a>
+
+  <a class="card card-agro" href="agroeconum/index.html">
+    <div class="card-banner">
+      <img src="agroeconum/banner.jpg" alt="AGROECONUM"/>
+      <div class="card-banner-overlay"></div>
+    </div>
+    <div class="card-body">
+      <div class="card-tag">France 2030 · Agriculture</div>
+      <div class="card-title">AGROECONUM</div>
+      <div class="card-desc">Programme de recherche Agroécologie et Numérique — France 2030</div>
+      <div class="card-stats">
+        <div class="card-stat"><div class="n">268</div><div class="l">Publications</div></div>
+        <div class="card-stat"><div class="n">2022–26</div><div class="l">Période</div></div>
+        <div class="card-stat"><div class="n">FR</div><div class="l">National</div></div>
+      </div>
+      <div class="card-cta">Voir le tableau de bord →</div>
+    </div>
+  </a>
+
+  <a class="card card-inter" href="interstices/index.html">
+    <div class="card-banner">
+      <img src="interstices/banner.jpg" alt="Interstices"/>
+      <div class="card-banner-overlay"></div>
+    </div>
+    <div class="card-body">
+      <div class="card-tag">Vulgarisation · Sciences</div>
+      <div class="card-title">Interstices</div>
+      <div class="card-desc">Explorez les sciences du numérique — revue de vulgarisation scientifique</div>
+      <div class="card-stats">
+        <div class="card-stat"><div class="n">656</div><div class="l">Publications</div></div>
+        <div class="card-stat"><div class="n">2004–25</div><div class="l">Période</div></div>
+        <div class="card-stat"><div class="n">INT</div><div class="l">International</div></div>
+      </div>
+      <div class="card-cta">Voir le tableau de bord →</div>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  Données issues de HAL — Institut National de Recherche en Informatique et en Automatique • Inria DataLake
+</footer>
+</body>
+</html>

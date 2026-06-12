@@ -1,0 +1,331 @@
+{
+  "total_pubs": 268,
+  "total_entries": 268,
+  "years": [
+    [
+      "2022",
+      2
+    ],
+    [
+      "2023",
+      24
+    ],
+    [
+      "2024",
+      53
+    ],
+    [
+      "2025",
+      141
+    ],
+    [
+      "2026",
+      48
+    ]
+  ],
+  "doc_types": [
+    [
+      "COMM",
+      98
+    ],
+    [
+      "POSTER",
+      59
+    ],
+    [
+      "ART",
+      58
+    ],
+    [
+      "UNDEFINED",
+      21
+    ],
+    [
+      "OTHER",
+      11
+    ],
+    [
+      "MEM",
+      9
+    ],
+    [
+      "SOFTWARE",
+      4
+    ],
+    [
+      "LECTURE",
+      3
+    ],
+    [
+      "REPORT",
+      1
+    ],
+    [
+      "BLOG",
+      1
+    ],
+    [
+      "COUV",
+      1
+    ],
+    [
+      "VIDEO",
+      1
+    ],
+    [
+      "PRESCONF",
+      1
+    ]
+  ],
+  "top_cities": [
+    [
+      "Rennes",
+      31
+    ],
+    [
+      "Palaiseau",
+      26
+    ],
+    [
+      "Talence",
+      25
+    ],
+    [
+      "Montpellier",
+      22
+    ],
+    [
+      "Jouy-en-Josas",
+      16
+    ],
+    [
+      "Villenave d'Ornon",
+      11
+    ],
+    [
+      "Cestas",
+      11
+    ],
+    [
+      "Bâtiment Bois de l'Etang5 bd D",
+      9
+    ],
+    [
+      "Villeurbanne",
+      9
+    ],
+    [
+      "Paris",
+      9
+    ],
+    [
+      "chemin de Borde-Rouge -Auzevil",
+      8
+    ],
+    [
+      "Sophia Antipolis",
+      8
+    ],
+    [
+      "avenue de la pomme de Pin - CS",
+      8
+    ],
+    [
+      "Inovallée655 avenue de l'Europ",
+      8
+    ],
+    [
+      "LUSIGNAN",
+      7
+    ]
+  ],
+  "top_countries": [
+    [
+      "FR",
+      265
+    ],
+    [
+      "CL",
+      2
+    ],
+    [
+      "IT",
+      1
+    ]
+  ],
+  "top_labs": [
+    [
+      "Laboratoire Bordelais de Recherche en Informatique",
+      24
+    ],
+    [
+      "Ecologie fonctionnelle et écotoxicologie des agroécosystèmes",
+      18
+    ],
+    [
+      "Physiologie, Environnement et Génétique pour l'Animal et les Systèmes d'Elevage [Rennes]",
+      14
+    ],
+    [
+      "Centre Inria de l'Université de Rennes",
+      12
+    ],
+    [
+      "Biodiversité, Gènes & Communautés",
+      11
+    ],
+    [
+      "Génétique Animale et Biologie Intégrative",
+      10
+    ],
+    [
+      "Laboratoire Interdisciplinaire Sciences, Innovations, Sociétés",
+      9
+    ],
+    [
+      "Laboratoire d'InfoRmatique en Image et Systèmes d'information",
+      9
+    ],
+    [
+      "Santé et agroécologie du vignoble",
+      8
+    ],
+    [
+      "Génétique Physiologie et Systèmes d'Elevage",
+      8
+    ],
+    [
+      "Info&Sols",
+      8
+    ],
+    [
+      "Centre Inria de l'Université Grenoble Alpes",
+      8
+    ],
+    [
+      "Unité de Recherche Pluridisciplinaire Prairies et Plantes Fourragères",
+      7
+    ],
+    [
+      "Modélisation Systémique Appliquée aux Ruminants",
+      5
+    ],
+    [
+      "Génétique Diversité et Ecophysiologie des Céréales",
+      5
+    ]
+  ],
+  "top_authors": [
+    [
+      "Clémence Frioux",
+      38
+    ],
+    [
+      "Emmanuelle Vaudour",
+      28
+    ],
+    [
+      "Simon Labarthe",
+      23
+    ],
+    [
+      "Florence Gondret",
+      17
+    ],
+    [
+      "Coralie Muller",
+      15
+    ],
+    [
+      "Alexis Joly",
+      14
+    ],
+    [
+      "Claire Lemaitre",
+      14
+    ],
+    [
+      "Nicolas Maurice",
+      12
+    ],
+    [
+      "Dominique Arrouays",
+      12
+    ],
+    [
+      "Sthyve Junior Tatho Djeanou",
+      12
+    ],
+    [
+      "Valentina Baldazzi",
+      12
+    ],
+    [
+      "Riccardo Vicedomini",
+      11
+    ],
+    [
+      "Sylvain Prigent",
+      11
+    ],
+    [
+      "Nicolas Baghdadi",
+      10
+    ],
+    [
+      "Alessio Ragno",
+      10
+    ]
+  ],
+  "top_domains": [
+    [
+      "Sdv",
+      239
+    ],
+    [
+      "Info",
+      155
+    ],
+    [
+      "Sa",
+      63
+    ],
+    [
+      "Sde",
+      59
+    ],
+    [
+      "Info Bi",
+      46
+    ],
+    [
+      "Shs",
+      28
+    ],
+    [
+      "Gen",
+      23
+    ],
+    [
+      "Bv",
+      22
+    ],
+    [
+      "Bibs",
+      22
+    ],
+    [
+      "Ee",
+      18
+    ],
+    [
+      "Info Ai",
+      17
+    ],
+    [
+      "Sdu",
+      16
+    ]
+  ],
+  "open_access": 224
+}

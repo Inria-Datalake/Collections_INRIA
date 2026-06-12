@@ -1,0 +1,383 @@
+{
+  "total_pubs": 656,
+  "total_entries": 656,
+  "years": [
+    [
+      "2004",
+      30
+    ],
+    [
+      "2005",
+      38
+    ],
+    [
+      "2006",
+      35
+    ],
+    [
+      "2007",
+      48
+    ],
+    [
+      "2008",
+      57
+    ],
+    [
+      "2009",
+      45
+    ],
+    [
+      "2010",
+      51
+    ],
+    [
+      "2011",
+      39
+    ],
+    [
+      "2012",
+      36
+    ],
+    [
+      "2013",
+      35
+    ],
+    [
+      "2014",
+      23
+    ],
+    [
+      "2015",
+      33
+    ],
+    [
+      "2016",
+      29
+    ],
+    [
+      "2017",
+      30
+    ],
+    [
+      "2018",
+      18
+    ],
+    [
+      "2019",
+      20
+    ],
+    [
+      "2020",
+      14
+    ],
+    [
+      "2021",
+      17
+    ],
+    [
+      "2022",
+      20
+    ],
+    [
+      "2023",
+      13
+    ],
+    [
+      "2024",
+      12
+    ],
+    [
+      "2025",
+      13
+    ]
+  ],
+  "doc_types": [
+    [
+      "ART",
+      655
+    ],
+    [
+      "BLOG",
+      1
+    ]
+  ],
+  "top_cities": [
+    [
+      "Paris",
+      79
+    ],
+    [
+      "Rennes",
+      64
+    ],
+    [
+      "Sophia Antipolis",
+      59
+    ],
+    [
+      "Nancy",
+      42
+    ],
+    [
+      "Grenoble",
+      42
+    ],
+    [
+      "Rocquencourt",
+      40
+    ],
+    [
+      "Talence",
+      33
+    ],
+    [
+      "Villeneuve d'Ascq Cédex",
+      31
+    ],
+    [
+      "Inovallée655 avenue de l'Europ",
+      29
+    ],
+    [
+      "Palaiseau",
+      17
+    ],
+    [
+      "Montpellier",
+      13
+    ],
+    [
+      "Orsay",
+      9
+    ],
+    [
+      "Lyon",
+      8
+    ],
+    [
+      "Villeneuve d'Ascq",
+      8
+    ],
+    [
+      "Tours",
+      7
+    ]
+  ],
+  "top_countries": [
+    [
+      "FR",
+      624
+    ],
+    [
+      "US",
+      10
+    ],
+    [
+      "DE",
+      6
+    ],
+    [
+      "BE",
+      5
+    ],
+    [
+      "CH",
+      5
+    ],
+    [
+      "CA",
+      2
+    ],
+    [
+      "GB",
+      1
+    ],
+    [
+      "IL",
+      1
+    ],
+    [
+      "HK",
+      1
+    ],
+    [
+      "PL",
+      1
+    ]
+  ],
+  "top_labs": [
+    [
+      "Centre Inria d'Université Côte d'Azur",
+      57
+    ],
+    [
+      "Centre Inria de l'Université de Rennes",
+      43
+    ],
+    [
+      "Journaliste",
+      32
+    ],
+    [
+      "Laboratoire d'Informatique Fondamentale de Lille",
+      31
+    ],
+    [
+      "Centre Inria de l'Université Grenoble Alpes",
+      29
+    ],
+    [
+      "Centre Inria de l'Université de Lorraine",
+      27
+    ],
+    [
+      "Laboratoire Bordelais de Recherche en Informatique",
+      23
+    ],
+    [
+      "Inria Paris-Rocquencourt",
+      20
+    ],
+    [
+      "Inria Siège",
+      19
+    ],
+    [
+      "Laboratoire Adaptation et pathogénie des micro-organismes [Grenoble]",
+      17
+    ],
+    [
+      "Institut de Recherche en Informatique et Systèmes Aléatoires",
+      15
+    ],
+    [
+      "Centre Inria de Paris",
+      14
+    ],
+    [
+      "Laboratoire d'Informatique de Robotique et de Microélectronique de Montpellier",
+      12
+    ],
+    [
+      "Grenoble Images Parole Signal Automatique",
+      10
+    ],
+    [
+      "Centre Inria de l'Université de Bordeaux",
+      10
+    ]
+  ],
+  "top_authors": [
+    [
+      "Joanna Jongwane",
+      93
+    ],
+    [
+      "Jean-Paul Delahaye",
+      26
+    ],
+    [
+      "François Rechenmann",
+      22
+    ],
+    [
+      "Thierry Viéville",
+      18
+    ],
+    [
+      "Christian Blonz",
+      17
+    ],
+    [
+      "Pascal Guitton",
+      9
+    ],
+    [
+      "Isabelle Bellin",
+      9
+    ],
+    [
+      "Maxime Amblard",
+      9
+    ],
+    [
+      "Jocelyne Erhel",
+      8
+    ],
+    [
+      "Jean-Charles Billaut",
+      7
+    ],
+    [
+      "Sacha Krakowiak",
+      7
+    ],
+    [
+      "Laurent Viennot",
+      6
+    ],
+    [
+      "Yannick Kergosien",
+      6
+    ],
+    [
+      "Christine Leininger",
+      6
+    ],
+    [
+      "Dennis Shasha",
+      6
+    ]
+  ],
+  "top_domains": [
+    [
+      "Info",
+      717
+    ],
+    [
+      "Math",
+      95
+    ],
+    [
+      "Info Mo",
+      65
+    ],
+    [
+      "Sdv",
+      57
+    ],
+    [
+      "Info Ts",
+      54
+    ],
+    [
+      "Info Pl",
+      43
+    ],
+    [
+      "Spi",
+      37
+    ],
+    [
+      "Info Cr",
+      37
+    ],
+    [
+      "Info Ai",
+      34
+    ],
+    [
+      "Info Ni",
+      33
+    ],
+    [
+      "Bbm",
+      27
+    ],
+    [
+      "Info Bi",
+      21
+    ]
+  ],
+  "open_access": 26
+}

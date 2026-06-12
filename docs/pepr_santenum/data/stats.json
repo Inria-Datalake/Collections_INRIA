@@ -1,0 +1,335 @@
+{
+  "total_pubs": 323,
+  "total_entries": 323,
+  "years": [
+    [
+      "2023",
+      1
+    ],
+    [
+      "2024",
+      92
+    ],
+    [
+      "2025",
+      165
+    ],
+    [
+      "2026",
+      65
+    ]
+  ],
+  "doc_types": [
+    [
+      "COMM",
+      112
+    ],
+    [
+      "ART",
+      91
+    ],
+    [
+      "UNDEFINED",
+      65
+    ],
+    [
+      "POSTER",
+      23
+    ],
+    [
+      "SOFTWARE",
+      10
+    ],
+    [
+      "OTHER",
+      7
+    ],
+    [
+      "COUV",
+      5
+    ],
+    [
+      "PRESCONF",
+      4
+    ],
+    [
+      "BLOG",
+      3
+    ],
+    [
+      "LECTURE",
+      2
+    ],
+    [
+      "REPORT",
+      1
+    ]
+  ],
+  "top_cities": [
+    [
+      "Paris",
+      69
+    ],
+    [
+      "Sophia Antipolis",
+      37
+    ],
+    [
+      "Rennes",
+      30
+    ],
+    [
+      "Marseille",
+      25
+    ],
+    [
+      "LIMOGES",
+      25
+    ],
+    [
+      "Lyon",
+      14
+    ],
+    [
+      "Gif sur Yvette",
+      13
+    ],
+    [
+      "Orsay",
+      12
+    ],
+    [
+      "Villeurbanne",
+      11
+    ],
+    [
+      "Talence",
+      9
+    ],
+    [
+      "Palaiseau",
+      7
+    ],
+    [
+      "Nancy",
+      6
+    ],
+    [
+      "Montpellier",
+      6
+    ],
+    [
+      "Bordeaux",
+      6
+    ],
+    [
+      "Toulouse",
+      4
+    ]
+  ],
+  "top_countries": [
+    [
+      "FR",
+      315
+    ],
+    [
+      "IT",
+      3
+    ],
+    [
+      "CH",
+      1
+    ],
+    [
+      "US",
+      1
+    ],
+    [
+      "LB",
+      1
+    ],
+    [
+      "DK",
+      1
+    ],
+    [
+      "BE",
+      1
+    ]
+  ],
+  "top_labs": [
+    [
+      "Centre Inria d'Université Côte d'Azur",
+      36
+    ],
+    [
+      "Institut de Neurosciences des Systèmes",
+      20
+    ],
+    [
+      "Pharmacologie et Transplantation",
+      17
+    ],
+    [
+      "Centre Inria de Paris",
+      16
+    ],
+    [
+      "IFR49 - Neurospin - CEA",
+      13
+    ],
+    [
+      "Centre Inria de l'Université de Rennes",
+      12
+    ],
+    [
+      "Laboratoire Interdisciplinaire des Sciences du Numérique",
+      12
+    ],
+    [
+      "Services répartis, Architectures, MOdélisation, Validation, Administration des Réseaux",
+      11
+    ],
+    [
+      "Paris Jourdan Sciences Economiques",
+      11
+    ],
+    [
+      "Institut de Recherche Mathématique de Rennes",
+      10
+    ],
+    [
+      "Laboratoire d'InfoRmatique en Image et Systèmes d'information",
+      9
+    ],
+    [
+      "Laboratoire Traitement du Signal et de l'Image",
+      8
+    ],
+    [
+      "Laboratoire Bordelais de Recherche en Informatique",
+      7
+    ],
+    [
+      "Laboratoire d'analyse et modélisation de systèmes pour l'aide à la décision",
+      6
+    ],
+    [
+      "Service de Pharmacologie, toxicologie et pharmacovigilance [CHU Limoges]",
+      5
+    ]
+  ],
+  "top_authors": [
+    [
+      "Jean-Baptiste Woillard",
+      20
+    ],
+    [
+      "Sébastien Benzekry",
+      19
+    ],
+    [
+      "Carine Milcent",
+      16
+    ],
+    [
+      "Sarah Cohen-Boulakia",
+      13
+    ],
+    [
+      "Viktor Jirsa",
+      12
+    ],
+    [
+      "Hugo Barbot",
+      12
+    ],
+    [
+      "David Causeur",
+      12
+    ],
+    [
+      "Maryline Laurent",
+      12
+    ],
+    [
+      "Yuna Blum",
+      11
+    ],
+    [
+      "Magali Richard",
+      11
+    ],
+    [
+      "Pierre Marquet",
+      11
+    ],
+    [
+      "Rodolphe Thiébaut",
+      11
+    ],
+    [
+      "Bertrand Thirion",
+      11
+    ],
+    [
+      "Adrien Coulet",
+      11
+    ],
+    [
+      "Damien Depannemaecker",
+      10
+    ]
+  ],
+  "top_domains": [
+    [
+      "Info",
+      223
+    ],
+    [
+      "Sdv",
+      146
+    ],
+    [
+      "Stat",
+      86
+    ],
+    [
+      "Info Bi",
+      38
+    ],
+    [
+      "Info Ai",
+      38
+    ],
+    [
+      "Scco",
+      35
+    ],
+    [
+      "Shs",
+      33
+    ],
+    [
+      "Math",
+      32
+    ],
+    [
+      "Sp",
+      28
+    ],
+    [
+      "Neur",
+      27
+    ],
+    [
+      "Info Lg",
+      27
+    ],
+    [
+      "Can",
+      26
+    ]
+  ],
+  "open_access": 294
+}
