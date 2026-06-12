@@ -1,0 +1,351 @@
+{
+  "total_pubs": 268,
+  "total_entries": 268,
+  "years": [
+    [
+      "2022",
+      2
+    ],
+    [
+      "2023",
+      24
+    ],
+    [
+      "2024",
+      53
+    ],
+    [
+      "2025",
+      141
+    ],
+    [
+      "2026",
+      48
+    ]
+  ],
+  "doc_types": [
+    [
+      "COMM",
+      98
+    ],
+    [
+      "POSTER",
+      59
+    ],
+    [
+      "ART",
+      58
+    ],
+    [
+      "UNDEFINED",
+      21
+    ],
+    [
+      "OTHER",
+      11
+    ],
+    [
+      "MEM",
+      9
+    ],
+    [
+      "SOFTWARE",
+      4
+    ],
+    [
+      "LECTURE",
+      3
+    ],
+    [
+      "BLOG",
+      1
+    ],
+    [
+      "REPORT",
+      1
+    ],
+    [
+      "COUV",
+      1
+    ],
+    [
+      "VIDEO",
+      1
+    ],
+    [
+      "PRESCONF",
+      1
+    ]
+  ],
+  "top_cities": [
+    [
+      "Rennes",
+      31
+    ],
+    [
+      "Palaiseau",
+      26
+    ],
+    [
+      "Talence",
+      25
+    ],
+    [
+      "Montpellier",
+      22
+    ],
+    [
+      "Jouy-en-Josas",
+      16
+    ],
+    [
+      "Cestas",
+      11
+    ],
+    [
+      "Villenave d'Ornon",
+      11
+    ],
+    [
+      "Paris",
+      9
+    ],
+    [
+      "Villeurbanne",
+      9
+    ],
+    [
+      "Bâtiment Bois de l'Etang5 bd DescartesCh",
+      9
+    ],
+    [
+      "Sophia Antipolis",
+      8
+    ],
+    [
+      "Inovallée655 avenue de l'Europe38330 Mon",
+      8
+    ],
+    [
+      "chemin de Borde-Rouge -Auzeville Tolosan",
+      8
+    ],
+    [
+      "avenue de la pomme de Pin - CS  Ardon -",
+      8
+    ],
+    [
+      "LUSIGNAN",
+      7
+    ]
+  ],
+  "top_countries": [
+    [
+      "FR",
+      265
+    ],
+    [
+      "CL",
+      2
+    ],
+    [
+      "IT",
+      1
+    ]
+  ],
+  "top_labs": [
+    [
+      "Laboratoire Bordelais de Recherche en Informatique",
+      24
+    ],
+    [
+      "Ecologie fonctionnelle et écotoxicologie des agroécosystèmes",
+      18
+    ],
+    [
+      "Physiologie, Environnement et Génétique pour l'Animal et les Systèmes d'Elevage [Rennes]",
+      14
+    ],
+    [
+      "Centre Inria de l'Université de Rennes",
+      12
+    ],
+    [
+      "Biodiversité, Gènes & Communautés",
+      11
+    ],
+    [
+      "Génétique Animale et Biologie Intégrative",
+      10
+    ],
+    [
+      "Laboratoire d'InfoRmatique en Image et Systèmes d'information",
+      9
+    ],
+    [
+      "Laboratoire Interdisciplinaire Sciences, Innovations, Sociétés",
+      9
+    ],
+    [
+      "Centre Inria de l'Université Grenoble Alpes",
+      8
+    ],
+    [
+      "Génétique Physiologie et Systèmes d'Elevage",
+      8
+    ],
+    [
+      "Info&Sols",
+      8
+    ],
+    [
+      "Santé et agroécologie du vignoble",
+      8
+    ],
+    [
+      "Unité de Recherche Pluridisciplinaire Prairies et Plantes Fourragères",
+      7
+    ],
+    [
+      "Modélisation Systémique Appliquée aux Ruminants",
+      5
+    ],
+    [
+      "Centre de recherche sur le travail et le développement",
+      5
+    ]
+  ],
+  "top_authors": [
+    [
+      "Clémence Frioux",
+      38
+    ],
+    [
+      "Emmanuelle Vaudour",
+      28
+    ],
+    [
+      "Simon Labarthe",
+      23
+    ],
+    [
+      "Florence Gondret",
+      17
+    ],
+    [
+      "Coralie Muller",
+      15
+    ],
+    [
+      "Claire Lemaitre",
+      14
+    ],
+    [
+      "Alexis Joly",
+      14
+    ],
+    [
+      "Nicolas Maurice",
+      12
+    ],
+    [
+      "Sthyve Junior Tatho Djeanou",
+      12
+    ],
+    [
+      "Valentina Baldazzi",
+      12
+    ],
+    [
+      "Dominique Arrouays",
+      12
+    ],
+    [
+      "Riccardo Vicedomini",
+      11
+    ],
+    [
+      "Sylvain Prigent",
+      11
+    ],
+    [
+      "Pierre Bonnet",
+      10
+    ],
+    [
+      "Nicolas Baghdadi",
+      10
+    ],
+    [
+      "Alessio Ragno",
+      10
+    ],
+    [
+      "Didier Michot",
+      9
+    ],
+    [
+      "Youssef Fouad",
+      9
+    ],
+    [
+      "David James Sherman",
+      8
+    ],
+    [
+      "Masoomeh Taghipoor",
+      8
+    ]
+  ],
+  "top_domains": [
+    [
+      "Sdv",
+      239
+    ],
+    [
+      "Info",
+      155
+    ],
+    [
+      "Sa",
+      63
+    ],
+    [
+      "Sde",
+      59
+    ],
+    [
+      "Info Bi",
+      46
+    ],
+    [
+      "Shs",
+      28
+    ],
+    [
+      "Gen",
+      23
+    ],
+    [
+      "Bibs",
+      22
+    ],
+    [
+      "Bv",
+      22
+    ],
+    [
+      "Sds",
+      20
+    ],
+    [
+      "Ee",
+      18
+    ],
+    [
+      "Info Ai",
+      17
+    ]
+  ],
+  "open_access": 224
+}
