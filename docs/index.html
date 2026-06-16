@@ -5,427 +5,413 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Collections Inria — Tableaux de bord scientométriques</title>
 <meta name="description" content="Tableaux de bord scientométriques Inria — données HAL"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-/* ===== RESET & BASE ===== */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --radius: 6px;
-  --sidebar-w: 240px;
-  --transition: 200ms ease;
-  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font: 'Inter', system-ui, -apple-system, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --sidebar-w: 232px;
+  --header-h: 54px;
+  --t: 180ms cubic-bezier(0.4,0,0.2,1);
+  --blue:        #317AC1;
+  --blue-soft:   rgba(49,122,193,0.12);
+  --blue-glow:   rgba(49,122,193,0.20);
+  --green:       #16a34a;
+  --green-soft:  rgba(22,163,74,0.12);
+  --cyan:        #0891b2;
+  --cyan-soft:   rgba(8,145,178,0.12);
+  --purple:      #7c3aed;
+  --purple-soft: rgba(124,58,237,0.12);
+  --orange:      #ea6c00;
+  --orange-soft: rgba(234,108,0,0.12);
 }
 
-/* ===== DARK THEME (default) ===== */
 [data-theme="dark"] {
-  --bg:         #111318;
-  --bg2:        #16191f;
-  --bg3:        #1c2028;
-  --surface:    #1e2230;
-  --surface2:   #252b3b;
-  --border:     rgba(255,255,255,0.07);
-  --border2:    rgba(255,255,255,0.12);
-  --text:       #e8eaf0;
-  --text2:      #8b92a8;
-  --text3:      #5a6080;
-  --accent:     #0078d4;
-  --accent-bg:  rgba(0,120,212,0.12);
-  --accent-hover: rgba(0,120,212,0.2);
-  --shadow:     0 4px 20px rgba(0,0,0,0.4);
-  --shadow-sm:  0 2px 8px rgba(0,0,0,0.3);
-  --sidebar-bg: #0f1117;
-  --sidebar-border: rgba(255,255,255,0.06);
-  --header-bg:  rgba(15,17,23,0.95);
+  --bg:         #0d1117;
+  --bg2:        #111827;
+  --bg3:        #1a2233;
+  --surface:    #161d2e;
+  --surface2:   #1e2840;
+  --border:     rgba(255,255,255,0.06);
+  --border2:    rgba(255,255,255,0.11);
+  --text:       #e4e9f4;
+  --text2:      #7e8fb5;
+  --text3:      #3d4f70;
+  --header-bg:  rgba(13,17,23,0.92);
+  --sidebar-bg: #0a0f1a;
+  --shadow:     0 8px 32px rgba(0,0,0,0.45);
+  --shadow-sm:  0 2px 10px rgba(0,0,0,0.30);
+  --card-hover: rgba(49,122,193,0.06);
 }
 
-/* ===== LIGHT THEME ===== */
 [data-theme="light"] {
-  --bg:         #f3f5f8;
-  --bg2:        #eceef2;
-  --bg3:        #e4e7ed;
+  --bg:         #f4f6fb;
+  --bg2:        #eceef5;
+  --bg3:        #e2e6f0;
   --surface:    #ffffff;
-  --surface2:   #f8f9fb;
-  --border:     rgba(0,0,0,0.08);
-  --border2:    rgba(0,0,0,0.14);
-  --text:       #1a1d26;
-  --text2:      #5c6478;
-  --text3:      #9099b0;
-  --accent:     #0078d4;
-  --accent-bg:  rgba(0,120,212,0.08);
-  --accent-hover: rgba(0,120,212,0.14);
-  --shadow:     0 4px 20px rgba(0,0,0,0.08);
-  --shadow-sm:  0 2px 8px rgba(0,0,0,0.06);
+  --surface2:   #f8f9fd;
+  --border:     rgba(0,0,0,0.07);
+  --border2:    rgba(0,0,0,0.13);
+  --text:       #111827;
+  --text2:      #4b5780;
+  --text3:      #9ba3bf;
+  --header-bg:  rgba(255,255,255,0.94);
   --sidebar-bg: #ffffff;
-  --sidebar-border: rgba(0,0,0,0.07);
-  --header-bg:  rgba(255,255,255,0.95);
+  --shadow:     0 8px 32px rgba(49,122,193,0.10);
+  --shadow-sm:  0 2px 10px rgba(49,122,193,0.07);
+  --card-hover: rgba(49,122,193,0.04);
 }
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
 body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  transition: background var(--transition), color var(--transition);
+  display: flex; flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--t), color var(--t);
 }
 
-/* ===== LAYOUT ===== */
-.app { display: flex; flex-direction: column; min-height: 100vh; }
-
-/* ===== HEADER ===== */
+/* ── Header ── */
 .header {
-  position: sticky; top: 0; z-index: 100;
+  position: sticky; top: 0; z-index: 200;
+  height: var(--header-h);
   background: var(--header-bg);
   border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 24px;
-  height: 52px;
-  flex-shrink: 0;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 0 24px; flex-shrink: 0;
 }
-.header-left { display: flex; align-items: center; gap: 12px; }
-.header-logo {
-  display: flex; align-items: center; gap: 8px;
-  text-decoration: none; color: var(--text);
+.header-left { display:flex; align-items:center; gap:14px; }
+.header-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.header-brand-icon {
+  width:32px; height:32px; background:var(--blue);
+  border-radius:var(--radius-sm);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 4px 12px rgba(49,122,193,0.35);
 }
-.header-logo-icon {
-  width: 28px; height: 28px;
-  background: var(--accent);
-  border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+.header-brand-icon svg { width:17px; height:17px; fill:white; }
+.header-brand-name { font-size:13.5px; font-weight:700; color:var(--text); letter-spacing:-0.01em; }
+.header-brand-sub  { font-size:10.5px; color:var(--text2); font-weight:400; margin-top:1px; }
+.header-sep { width:1px; height:24px; background:var(--border2); }
+.header-context { font-size:12px; color:var(--text2); }
+.header-right { display:flex; align-items:center; gap:8px; }
+.live-pill {
+  display:flex; align-items:center; gap:6px;
+  font-size:11px; font-weight:500; color:var(--text2);
+  background:var(--surface); border:1px solid var(--border2);
+  border-radius:20px; padding:4px 12px;
 }
-.header-logo-icon svg { width: 16px; height: 16px; fill: white; }
-.header-title { font-size: 14px; font-weight: 600; color: var(--text); letter-spacing: 0.01em; }
-.header-subtitle { font-size: 11px; color: var(--text2); margin-top: 1px; }
-.header-divider { width: 1px; height: 28px; background: var(--border2); margin: 0 4px; }
-
-.header-right { display: flex; align-items: center; gap: 8px; }
-
-.badge-live {
-  display: flex; align-items: center; gap: 5px;
-  font-size: 11px; color: var(--text2);
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 20px; padding: 3px 10px;
+.live-dot {
+  width:7px; height:7px; border-radius:50%;
+  background:#22c55e; box-shadow:0 0 6px #22c55e;
+  animation: livepulse 2.2s infinite;
 }
-.badge-live-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%; background: #22c55e;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
+@keyframes livepulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.85)} }
 .btn-icon {
-  width: 32px; height: 32px; border-radius: var(--radius);
-  border: 1px solid var(--border); background: var(--surface);
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  color: var(--text2); transition: all var(--transition);
+  width:34px; height:34px; border-radius:var(--radius-sm);
+  border:1px solid var(--border2); background:var(--surface);
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  color:var(--text2); transition:all var(--t);
 }
-.btn-icon:hover { background: var(--surface2); border-color: var(--border2); color: var(--text); }
-.btn-icon svg { width: 15px; height: 15px; }
+.btn-icon:hover { background:var(--surface2); color:var(--text); border-color:var(--blue); }
+.btn-icon svg { width:15px; height:15px; }
 
-/* ===== BODY LAYOUT ===== */
-.body { display: flex; flex: 1; overflow: hidden; }
+/* ── Layout ── */
+.layout { display:flex; flex:1; overflow:hidden; }
 
-/* ===== SIDEBAR ===== */
+/* ── Sidebar ── */
 .sidebar {
-  width: var(--sidebar-w);
-  flex-shrink: 0;
-  background: var(--sidebar-bg);
-  border-right: 1px solid var(--sidebar-border);
-  display: flex; flex-direction: column;
-  overflow: hidden;
-  transition: width var(--transition);
+  width: var(--sidebar-w); flex-shrink:0;
+  background:var(--sidebar-bg);
+  border-right:1px solid var(--border);
+  display:flex; flex-direction:column;
+  overflow:hidden; transition:width var(--t);
 }
-.sidebar.collapsed { width: 52px; }
+.sidebar.collapsed { width:56px; }
 
-.sidebar-header {
-  padding: 16px 14px 10px;
-  border-bottom: 1px solid var(--border);
+.sb-header { padding:20px 14px 12px; border-bottom:1px solid var(--border); }
+.sb-logo {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:14px;
 }
-.sidebar-label {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
-  color: var(--text3); text-transform: uppercase;
-  white-space: nowrap; overflow: hidden;
-}
-.sidebar.collapsed .sidebar-label { display: none; }
+.sb-logo img { height:18px; max-width:90px; object-fit:contain; opacity:.75; }
+.sb-logo-sep { width:1px; height:16px; background:var(--border2); flex-shrink:0; }
+.sidebar.collapsed .sb-logo { display:none; }
 
-.sidebar-nav { flex: 1; padding: 8px 6px; overflow-y: auto; }
-.sidebar-nav::-webkit-scrollbar { width: 3px; }
-.sidebar-nav::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+.sb-title { font-size:13px; font-weight:700; color:var(--text); letter-spacing:-0.01em; }
+.sb-sub   { font-size:10px; color:var(--text2); margin-top:2px; }
+.sidebar.collapsed .sb-title { display:none; }
+.sidebar.collapsed .sb-sub   { display:none; }
 
-.nav-section-title {
-  font-size: 10px; font-weight: 600; color: var(--text3);
-  text-transform: uppercase; letter-spacing: 0.07em;
-  padding: 6px 8px 4px;
-  white-space: nowrap; overflow: hidden;
+.sb-nav { flex:1; padding:12px 8px; overflow-y:auto; }
+.sb-nav::-webkit-scrollbar { width:3px; }
+.sb-nav::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
+
+.sb-section {
+  font-size:9px; font-weight:700; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--text3);
+  padding:6px 8px 5px;
+  white-space:nowrap; overflow:hidden;
 }
-.sidebar.collapsed .nav-section-title { display: none; }
+.sidebar.collapsed .sb-section { opacity:0; }
 
 .nav-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 10px; border-radius: var(--radius);
-  cursor: pointer; text-decoration: none; color: var(--text2);
-  transition: all var(--transition); margin-bottom: 1px;
-  min-width: 0; white-space: nowrap;
+  display:flex; align-items:center; gap:10px;
+  padding:9px 10px; border-radius:var(--radius-sm);
+  cursor:pointer; text-decoration:none; color:var(--text2);
+  transition:all var(--t); margin-bottom:2px;
+  white-space:nowrap; overflow:hidden; position:relative;
 }
-.nav-item:hover { background: var(--accent-bg); color: var(--text); }
-.nav-item.active { background: var(--accent-bg); color: var(--accent); }
-.nav-item.active .nav-dot { background: var(--accent); }
-
-.nav-icon {
-  width: 28px; height: 28px; border-radius: 5px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; font-size: 14px;
+.nav-item:hover { background:var(--blue-soft); color:var(--text); }
+.nav-item.active { background:var(--blue-soft); color:var(--blue); }
+.nav-item.active::before {
+  content:''; position:absolute; left:0; top:20%; bottom:20%;
+  width:3px; background:var(--blue); border-radius:0 2px 2px 0;
 }
-.nav-icon.blue { background: rgba(0,120,212,0.12); }
-.nav-icon.green { background: rgba(34,197,94,0.12); }
-.nav-icon.cyan { background: rgba(6,182,212,0.12); }
 
-.nav-text { flex: 1; min-width: 0; overflow: hidden; }
-.nav-text-main { font-size: 12.5px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; }
-.nav-text-sub { font-size: 10px; color: var(--text3); overflow: hidden; text-overflow: ellipsis; }
-.sidebar.collapsed .nav-text { display: none; }
-
-.nav-count {
-  font-size: 10px; font-weight: 600;
-  background: var(--bg3); color: var(--text2);
-  border-radius: 10px; padding: 1px 6px;
-  flex-shrink: 0;
+.nav-ico {
+  width:30px; height:30px; border-radius:var(--radius-sm);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; transition:background var(--t);
 }
-.sidebar.collapsed .nav-count { display: none; }
+.ico-blue  { background:var(--blue-soft); }
+.ico-green { background:var(--green-soft); }
+.ico-cyan  { background:var(--cyan-soft); }
 
-.sidebar-collapse-btn {
-  padding: 10px 6px;
-  border-top: 1px solid var(--border);
-}
-.collapse-btn {
-  display: flex; align-items: center; gap: 8px;
-  padding: 7px 10px; border-radius: var(--radius);
-  cursor: pointer; color: var(--text3); font-size: 12px;
-  background: none; border: none; width: 100%;
-  transition: all var(--transition);
-}
-.collapse-btn:hover { background: var(--bg3); color: var(--text2); }
-.collapse-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
-.sidebar.collapsed .collapse-btn span { display: none; }
+.nav-txt { flex:1; min-width:0; overflow:hidden; }
+.nav-txt-main { font-size:12.5px; font-weight:500; overflow:hidden; text-overflow:ellipsis; }
+.nav-txt-sub  { font-size:10px; color:var(--text3); overflow:hidden; text-overflow:ellipsis; margin-top:1px; }
+.sidebar.collapsed .nav-txt { display:none; }
 
-/* ===== MAIN ===== */
+.nav-badge {
+  font-size:10px; font-weight:600;
+  background:var(--bg3); color:var(--text2);
+  border-radius:10px; padding:2px 7px; flex-shrink:0;
+}
+.sidebar.collapsed .nav-badge { display:none; }
+
+.sb-footer { padding:10px 8px; border-top:1px solid var(--border); }
+.sb-collapse-btn {
+  display:flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:var(--radius-sm);
+  cursor:pointer; color:var(--text3); font-size:12px;
+  background:none; border:none; width:100%; transition:all var(--t);
+}
+.sb-collapse-btn:hover { background:var(--bg3); color:var(--text2); }
+.sb-collapse-btn svg { width:14px; height:14px; flex-shrink:0; transition:transform var(--t); }
+.sidebar.collapsed .sb-collapse-btn span { display:none; }
+.sidebar.collapsed .sb-collapse-btn svg { transform:rotate(180deg); }
+
+/* ── Main ── */
 .main {
-  flex: 1; overflow-y: auto; padding: 28px 32px;
-  background: var(--bg);
+  flex:1; overflow-y:auto;
+  background:var(--bg);
+  padding:32px 36px 40px;
 }
-.main::-webkit-scrollbar { width: 5px; }
-.main::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+.main::-webkit-scrollbar { width:5px; }
+.main::-webkit-scrollbar-thumb { background:var(--border2); border-radius:3px; }
 
-/* ===== PAGE TITLE ===== */
-.page-header { margin-bottom: 28px; }
-.page-title { font-size: 20px; font-weight: 600; color: var(--text); }
-.page-subtitle { font-size: 13px; color: var(--text2); margin-top: 4px; }
+/* Page header */
+.page-header {
+  display:flex; align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:32px;
+}
+.page-eyebrow {
+  font-size:9px; font-weight:700; letter-spacing:0.18em;
+  text-transform:uppercase; color:var(--blue);
+  margin-bottom:6px;
+  display:flex; align-items:center; gap:6px;
+}
+.page-eyebrow-line { display:inline-block; width:16px; height:2px; background:var(--blue); border-radius:2px; }
+.page-title { font-size:24px; font-weight:800; color:var(--text); letter-spacing:-0.03em; line-height:1.1; }
+.page-sub   { font-size:13px; color:var(--text2); margin-top:5px; }
+.page-date  { font-size:11px; color:var(--text3); font-weight:500; display:flex; align-items:center; gap:5px; }
 
-/* ===== KPI ROW ===== */
+/* KPI row */
 .kpi-row {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 12px; margin-bottom: 28px;
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:14px; margin-bottom:36px;
 }
 .kpi-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 16px;
-  display: flex; align-items: center; gap: 14px;
-  box-shadow: var(--shadow-sm);
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-md); padding:18px 20px;
+  display:flex; align-items:center; gap:14px;
+  box-shadow:var(--shadow-sm);
+  transition:box-shadow var(--t),transform var(--t),border-color var(--t);
+  animation:fadeUp 0.35s ease both;
 }
-.kpi-icon {
-  width: 38px; height: 38px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
+.kpi-card:hover { box-shadow:var(--shadow); transform:translateY(-2px); border-color:var(--border2); }
+.kpi-card:nth-child(1){animation-delay:.04s}
+.kpi-card:nth-child(2){animation-delay:.09s}
+.kpi-card:nth-child(3){animation-delay:.14s}
+.kpi-card:nth-child(4){animation-delay:.19s}
+.kpi-ico {
+  width:42px; height:42px; border-radius:var(--radius-sm);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
 }
-.kpi-icon.blue { background: rgba(0,120,212,0.12); }
-.kpi-icon.green { background: rgba(34,197,94,0.12); }
-.kpi-icon.orange { background: rgba(249,115,22,0.12); }
-.kpi-icon.purple { background: rgba(139,92,246,0.12); }
-.kpi-value { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1; }
-.kpi-label { font-size: 11px; color: var(--text2); margin-top: 3px; }
+.kpi-ico.blue   { background:var(--blue-soft); }
+.kpi-ico.green  { background:var(--green-soft); }
+.kpi-ico.orange { background:var(--orange-soft); }
+.kpi-ico.purple { background:var(--purple-soft); }
+.kpi-val { font-size:26px; font-weight:800; color:var(--text); letter-spacing:-0.03em; line-height:1; }
+.kpi-lbl { font-size:11px; color:var(--text2); margin-top:4px; font-weight:500; text-transform:uppercase; letter-spacing:0.06em; }
 
-/* ===== SECTION TITLE ===== */
-.section-title {
-  font-size: 12px; font-weight: 600; color: var(--text2);
-  text-transform: uppercase; letter-spacing: 0.06em;
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 8px;
+/* Section head */
+.section-head { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+.section-head-title { font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--text2); white-space:nowrap; }
+.section-head-line  { flex:1; height:1px; background:var(--border); }
+.section-head-count { font-size:10px; color:var(--text3); background:var(--bg3); border-radius:10px; padding:2px 8px; font-weight:600; }
+
+/* Cards grid */
+.cards-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
-.section-title::after {
-  content: ''; flex: 1; height: 1px; background: var(--border);
+.pcard {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius-lg); overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  display:flex; flex-direction:column;
+  text-decoration:none; color:inherit;
+  transition:box-shadow var(--t),transform var(--t),border-color var(--t),background var(--t);
+  animation:fadeUp 0.38s ease both;
 }
+.pcard:hover { box-shadow:var(--shadow); transform:translateY(-3px); border-color:var(--border2); background:var(--card-hover); }
+.pcard:nth-child(1){animation-delay:.08s}
+.pcard:nth-child(2){animation-delay:.15s}
+.pcard:nth-child(3){animation-delay:.22s}
 
-/* ===== PROJECT CARDS ===== */
-.projects-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+.pcard-bar { height:4px; width:100%; }
+.bar-blue  { background:linear-gradient(90deg,#317AC1,#4ab3e8); }
+.bar-green { background:linear-gradient(90deg,#16a34a,#4ade80); }
+.bar-cyan  { background:linear-gradient(90deg,#0891b2,#22d3ee); }
+
+.pcard-body { padding:22px 24px 20px; flex:1; display:flex; flex-direction:column; }
+.pcard-top  { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:16px; }
+
+.pcard-icon-wrap {
+  width:46px; height:46px; border-radius:var(--radius-md);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
 }
+.wrap-blue  { background:var(--blue-soft); }
+.wrap-green { background:var(--green-soft); }
+.wrap-cyan  { background:var(--cyan-soft); }
 
-.project-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: all 220ms ease;
-  display: flex; flex-direction: column;
-  cursor: pointer; text-decoration: none; color: inherit;
+.pcard-tag {
+  font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.10em;
+  padding:4px 9px; border-radius:20px;
+  border:1px solid var(--border2); color:var(--text2); background:var(--bg2);
+  white-space:nowrap; flex-shrink:0;
 }
-.project-card:hover {
-  border-color: var(--border2);
-  box-shadow: var(--shadow);
-  transform: translateY(-2px);
+.pcard-title { font-size:17px; font-weight:800; color:var(--text); letter-spacing:-0.02em; margin-bottom:8px; line-height:1.2; }
+.pcard-desc  { font-size:12px; color:var(--text2); line-height:1.65; flex:1; }
+
+.pcard-metrics { display:flex; margin:18px 0 0; border-top:1px solid var(--border); padding-top:16px; }
+.pcard-metric  { flex:1; text-align:center; position:relative; }
+.pcard-metric + .pcard-metric::before {
+  content:''; position:absolute; left:0; top:15%; height:70%;
+  width:1px; background:var(--border);
 }
+.pcard-metric-val { font-size:20px; font-weight:800; color:var(--text); letter-spacing:-0.02em; line-height:1; }
+.pcard-metric-lbl { font-size:9.5px; color:var(--text3); margin-top:3px; text-transform:uppercase; letter-spacing:0.07em; font-weight:600; }
 
-/* Colored top accent bar */
-.project-card-accent { height: 3px; width: 100%; }
-.accent-blue   { background: linear-gradient(90deg, #0078d4, #00b4d8); }
-.accent-green  { background: linear-gradient(90deg, #16a34a, #4ade80); }
-.accent-cyan   { background: linear-gradient(90deg, #0891b2, #22d3ee); }
+.oa-wrap { margin-top:16px; }
+.oa-header { display:flex; justify-content:space-between; font-size:10.5px; color:var(--text2); margin-bottom:6px; font-weight:500; }
+.oa-header strong { color:var(--text); font-weight:700; }
+.oa-track { height:5px; background:var(--bg3); border-radius:4px; overflow:hidden; }
+.oa-fill  { height:100%; border-radius:4px; transition:width 1.2s cubic-bezier(0.22,1,0.36,1); }
+.fill-blue  { background:linear-gradient(90deg,#317AC1,#4ab3e8); }
+.fill-green { background:linear-gradient(90deg,#16a34a,#4ade80); }
+.fill-cyan  { background:linear-gradient(90deg,#0891b2,#22d3ee); }
 
-.project-card-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; }
-
-.project-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
-.project-card-icon { font-size: 28px; line-height: 1; }
-.project-card-tag {
-  font-size: 10px; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.06em; padding: 3px 8px; border-radius: 4px;
-  border: 1px solid var(--border2); color: var(--text2);
-  background: var(--bg2); white-space: nowrap;
+.pcard-cta {
+  margin-top:18px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px; border-radius:var(--radius-sm);
+  border:1px solid var(--border2); background:var(--bg2);
+  font-size:11.5px; font-weight:600; color:var(--text2);
+  text-decoration:none; transition:all var(--t);
 }
+.pcard-cta:hover { background:var(--blue-soft); border-color:rgba(49,122,193,0.40); color:var(--blue); }
+.pcard-cta svg { width:14px; height:14px; flex-shrink:0; }
 
-.project-card-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-.project-card-desc { font-size: 12px; color: var(--text2); line-height: 1.55; flex: 1; }
-
-/* Mini metrics inside card */
-.project-metrics {
-  display: flex; gap: 0; margin: 16px -1px 0;
-  border-top: 1px solid var(--border);
-  padding-top: 14px;
-}
-.project-metric { flex: 1; text-align: center; padding: 0 4px; position: relative; }
-.project-metric + .project-metric::before {
-  content: ''; position: absolute; left: 0; top: 15%; height: 70%;
-  width: 1px; background: var(--border);
-}
-.project-metric-value { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1; }
-.project-metric-label { font-size: 10px; color: var(--text3); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.04em; }
-
-/* Progress bar OA */
-.oa-bar-wrap { margin-top: 14px; }
-.oa-bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text2); margin-bottom: 5px; }
-.oa-bar-track { height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
-.oa-bar-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
-.oa-blue  { background: linear-gradient(90deg,#0078d4,#00b4d8); }
-.oa-green { background: linear-gradient(90deg,#16a34a,#4ade80); }
-.oa-cyan  { background: linear-gradient(90deg,#0891b2,#22d3ee); }
-
-/* CTA button */
-.project-cta {
-  margin-top: 16px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 14px;
-  border-radius: var(--radius);
-  font-size: 12px; font-weight: 600;
-  border: 1px solid var(--border2);
-  background: var(--bg2); color: var(--text2);
-  transition: all var(--transition);
-  text-decoration: none;
-}
-.project-cta:hover { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
-.project-cta svg { width: 14px; height: 14px; }
-
-/* ===== RECENT SECTION ===== */
-.recent-section { margin-top: 32px; }
-.activity-list { display: flex; flex-direction: column; gap: 6px; }
-.activity-item {
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 14px;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); font-size: 12.5px;
-  transition: all var(--transition);
-}
-.activity-item:hover { border-color: var(--border2); background: var(--surface2); }
-.activity-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.dot-blue  { background: #0078d4; }
-.dot-green { background: #16a34a; }
-.dot-cyan  { background: #0891b2; }
-.activity-name { font-weight: 500; color: var(--text); flex: 1; }
-.activity-count { font-size: 11px; color: var(--text2); }
-.activity-arrow { color: var(--text3); }
-.activity-item a { text-decoration: none; display: contents; }
-
-/* ===== FOOTER ===== */
+/* Footer */
 .footer {
-  border-top: 1px solid var(--border);
-  background: var(--sidebar-bg);
-  padding: 12px 32px;
-  display: flex; align-items: center; justify-content: space-between;
-  font-size: 11px; color: var(--text3);
-  flex-shrink: 0;
+  border-top:1px solid var(--border); background:var(--sidebar-bg);
+  padding:14px 36px;
+  display:flex; align-items:center; justify-content:space-between;
+  font-size:11px; color:var(--text3); flex-shrink:0;
+}
+.footer strong { color:var(--text2); }
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  .projects-grid { grid-template-columns: 1fr; }
-  .kpi-row { grid-template-columns: repeat(2, 1fr); }
-  .sidebar { display: none; }
-  .main { padding: 20px 16px; }
+/* Responsive */
+@media (max-width:1100px) {
+  .cards-grid { grid-template-columns:repeat(2,1fr); }
+  .kpi-row    { grid-template-columns:repeat(2,1fr); }
 }
-@media (max-width: 600px) {
-  .kpi-row { grid-template-columns: repeat(2, 1fr); }
-  .header-subtitle { display: none; }
-  .badge-live { display: none; }
+@media (max-width:780px) {
+  .sidebar { display:none; }
+  .cards-grid { grid-template-columns:1fr; }
+  .main { padding:20px 16px 32px; }
+  .page-title { font-size:20px; }
+}
+@media (max-width:520px) {
+  .kpi-row { grid-template-columns:1fr 1fr; gap:10px; }
+  .live-pill { display:none; }
+  .header-context { display:none; }
 }
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
-
-/* Fade in animation */
-@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-.project-card { animation: fadeIn 0.3s ease backwards; }
-.project-card:nth-child(1) { animation-delay: 0.05s; }
-.project-card:nth-child(2) { animation-delay: 0.1s; }
-.project-card:nth-child(3) { animation-delay: 0.15s; }
-.kpi-card { animation: fadeIn 0.3s ease backwards; }
+::-webkit-scrollbar { width:5px; height:5px; }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:3px; }
 </style>
 </head>
 <body>
-<div class="app">
+
+<div style="display:flex;flex-direction:column;min-height:100vh;">
 
   <!-- HEADER -->
   <header class="header">
     <div class="header-left">
-      <a href="#" class="header-logo">
-        <div class="header-logo-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/>
-          </svg>
+      <a href="#" class="header-brand">
+        <div class="header-brand-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
         </div>
         <div>
-          <div class="header-title">Inria DataLake</div>
-          <div class="header-subtitle">Collections scientométriques</div>
+          <div class="header-brand-name">Inria DataLake</div>
+          <div class="header-brand-sub">Collections scientométriques</div>
         </div>
       </a>
-      <div class="header-divider"></div>
-      <span style="font-size:12px;color:var(--text2);">Tableaux de bord — HAL</span>
+      <div class="header-sep"></div>
+      <span class="header-context">Tableaux de bord — HAL</span>
     </div>
     <div class="header-right">
-      <div class="badge-live">
-        <span class="badge-live-dot"></span>
+      <div class="live-pill">
+        <span class="live-dot"></span>
         Données HAL en direct
       </div>
-      <button class="btn-icon" id="themeToggle" title="Basculer mode jour/nuit" onclick="toggleTheme()">
-        <!-- Moon icon (shown in dark mode) -->
+      <button class="btn-icon" onclick="toggleTheme()" title="Mode jour/nuit">
         <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
-        <!-- Sun icon (shown in light mode) -->
         <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
           <circle cx="12" cy="12" r="5"/>
           <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
@@ -437,66 +423,57 @@ body {
     </div>
   </header>
 
-  <!-- BODY -->
-  <div class="body">
+  <!-- LAYOUT -->
+  <div class="layout">
 
     <!-- SIDEBAR -->
     <aside class="sidebar" id="sidebar">
-      <div class="sidebar-header">
-        <div class="sidebar-label">Navigation</div>
+      <div class="sb-header">
+        <div class="sb-logo">
+          <img src="/assets/logo_inria.png" alt="Inria"/>
+          <div class="sb-logo-sep"></div>
+          <img src="/assets/logo_datalake.png" alt="Datalake"/>
+        </div>
+        <div class="sb-title">Copublications Inria</div>
+        <div class="sb-sub">Groupe Datalake · HAL</div>
       </div>
-      <nav class="sidebar-nav">
-        <div class="nav-section-title">Collections</div>
+
+      <nav class="sb-nav">
+        <div class="sb-section">Collections</div>
 
         <a href="#pepr" class="nav-item active" onclick="setActive(this)">
-          <div class="nav-icon blue">🏥</div>
-          <div class="nav-text">
-            <div class="nav-text-main">PEPR Santé Numérique</div>
-            <div class="nav-text-sub">2023–2026</div>
+          <div class="nav-ico ico-blue">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#317AC1" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
-          <span class="nav-count">323</span>
+          <div class="nav-txt">
+            <div class="nav-txt-main">PEPR Santé Numérique</div>
+            <div class="nav-txt-sub">2023–2026 · 323 publ.</div>
+          </div>
         </a>
 
         <a href="#agro" class="nav-item" onclick="setActive(this)">
-          <div class="nav-icon green">🌱</div>
-          <div class="nav-text">
-            <div class="nav-text-main">AGROECONUM</div>
-            <div class="nav-text-sub">2022–2026</div>
+          <div class="nav-ico ico-green">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"><path d="M12 22V12"/><path d="M5 3a9.5 9.5 0 0 0 7 9"/><path d="M19 3a9.5 9.5 0 0 1-7 9"/></svg>
           </div>
-          <span class="nav-count">268</span>
+          <div class="nav-txt">
+            <div class="nav-txt-main">AGROECONUM</div>
+            <div class="nav-txt-sub">2022–2026 · 268 publ.</div>
+          </div>
         </a>
 
         <a href="#inter" class="nav-item" onclick="setActive(this)">
-          <div class="nav-icon cyan">🔭</div>
-          <div class="nav-text">
-            <div class="nav-text-main">Interstices</div>
-            <div class="nav-text-sub">2004–2025</div>
+          <div class="nav-ico ico-cyan">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
           </div>
-          <span class="nav-count">656</span>
-        </a>
-
-        <div style="height:16px;"></div>
-        <div class="nav-section-title">Liens</div>
-
-        <a href="https://hal.science/" target="_blank" class="nav-item" style="font-size:12px;">
-          <div class="nav-icon" style="background:var(--bg3);">🔗</div>
-          <div class="nav-text">
-            <div class="nav-text-main">HAL Archives</div>
-            <div class="nav-text-sub">archives-ouvertes.fr</div>
-          </div>
-        </a>
-
-        <a href="https://www.inria.fr/" target="_blank" class="nav-item" style="font-size:12px;">
-          <div class="nav-icon" style="background:var(--bg3);">🏛️</div>
-          <div class="nav-text">
-            <div class="nav-text-main">Inria.fr</div>
-            <div class="nav-text-sub">Site officiel</div>
+          <div class="nav-txt">
+            <div class="nav-txt-main">Interstices</div>
+            <div class="nav-txt-sub">2004–2025 · 656 publ.</div>
           </div>
         </a>
       </nav>
 
-      <div class="sidebar-collapse-btn">
-        <button class="collapse-btn" onclick="toggleSidebar()">
+      <div class="sb-footer">
+        <button class="sb-collapse-btn" onclick="toggleSidebar()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="collapse-icon">
             <path d="M15 18l-6-6 6-6"/>
           </svg>
@@ -505,275 +482,205 @@ body {
       </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
+    <!-- MAIN -->
     <main class="main">
 
-      <!-- Page Header -->
+      <!-- Page header -->
       <div class="page-header">
-        <div class="page-title">Vue d'ensemble</div>
-        <div class="page-subtitle">3 collections · 1 247 publications · Données HAL</div>
+        <div>
+          <div class="page-eyebrow">
+            <span class="page-eyebrow-line"></span>
+            HAL · Inria
+          </div>
+          <div class="page-title">Vue d'ensemble</div>
+          <div class="page-sub">3 collections · 1 247 publications · Données HAL</div>
+        </div>
+        <div class="page-date">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Juin 2026
+        </div>
       </div>
 
       <!-- KPIs -->
       <div class="kpi-row">
         <div class="kpi-card">
-          <div class="kpi-icon blue">📄</div>
+          <div class="kpi-ico blue">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#317AC1" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
           <div>
-            <div class="kpi-value">1 247</div>
-            <div class="kpi-label">Publications totales</div>
+            <div class="kpi-val">1 247</div>
+            <div class="kpi-lbl">Publications</div>
           </div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-icon green">🌍</div>
+          <div class="kpi-ico green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
           <div>
-            <div class="kpi-value">12</div>
-            <div class="kpi-label">Pays partenaires</div>
+            <div class="kpi-val">12</div>
+            <div class="kpi-lbl">Pays partenaires</div>
           </div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-icon orange">🔓</div>
+          <div class="kpi-ico orange">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ea6c00" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+          </div>
           <div>
-            <div class="kpi-value">544</div>
-            <div class="kpi-label">Publications Open Access</div>
+            <div class="kpi-val">544</div>
+            <div class="kpi-lbl">Open Access</div>
           </div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-icon purple">🗓️</div>
+          <div class="kpi-ico purple">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
           <div>
-            <div class="kpi-value">2004–2026</div>
-            <div class="kpi-label">Période couverte</div>
+            <div class="kpi-val">2004–2026</div>
+            <div class="kpi-lbl">Période couverte</div>
           </div>
         </div>
       </div>
 
-      <!-- Projects section -->
-      <div class="section-title">Tableaux de bord</div>
+      <!-- Cards -->
+      <div class="section-head">
+        <div class="section-head-title">Tableaux de bord</div>
+        <div class="section-head-line"></div>
+        <div class="section-head-count">3 collections</div>
+      </div>
 
-      <div class="projects-grid">
+      <div class="cards-grid">
 
-        <!-- PEPR Santé Numérique -->
-        <div class="project-card" id="pepr">
-          <div class="project-card-accent accent-blue"></div>
-          <div class="project-card-body">
-            <div class="project-card-header">
-              <div class="project-card-icon">🏥</div>
-              <span class="project-card-tag">PEPR · Santé</span>
+        <!-- PEPR -->
+        <a href="pepr_santenum/index.html" class="pcard" id="pepr">
+          <div class="pcard-bar bar-blue"></div>
+          <div class="pcard-body">
+            <div class="pcard-top">
+              <div class="pcard-icon-wrap wrap-blue">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#317AC1" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <span class="pcard-tag">PEPR · Santé</span>
             </div>
-            <div class="project-card-title">PEPR Santé Numérique</div>
-            <div class="project-card-desc">Programme et équipements prioritaires de recherche en santé numérique. Analyse des publications HAL 2023–2026.</div>
-
-            <div class="project-metrics">
-              <div class="project-metric">
-                <div class="project-metric-value">323</div>
-                <div class="project-metric-label">Publications</div>
-              </div>
-              <div class="project-metric">
-                <div class="project-metric-value">7</div>
-                <div class="project-metric-label">Pays</div>
-              </div>
-              <div class="project-metric">
-                <div class="project-metric-value">91%</div>
-                <div class="project-metric-label">Open Access</div>
-              </div>
+            <div class="pcard-title">PEPR Santé Numérique</div>
+            <div class="pcard-desc">Programme et équipements prioritaires de recherche en santé numérique. Analyse des publications HAL 2023–2026.</div>
+            <div class="pcard-metrics">
+              <div class="pcard-metric"><div class="pcard-metric-val">323</div><div class="pcard-metric-lbl">Publications</div></div>
+              <div class="pcard-metric"><div class="pcard-metric-val">7</div><div class="pcard-metric-lbl">Pays</div></div>
+              <div class="pcard-metric"><div class="pcard-metric-val">91%</div><div class="pcard-metric-lbl">Open Access</div></div>
             </div>
-
-            <div class="oa-bar-wrap">
-              <div class="oa-bar-label">
-                <span>Open Access</span>
-                <span style="color:var(--text);font-weight:600;">294 / 323</span>
-              </div>
-              <div class="oa-bar-track">
-                <div class="oa-bar-fill oa-blue" style="width:91%"></div>
-              </div>
+            <div class="oa-wrap">
+              <div class="oa-header"><span>Open Access</span><strong>294 / 323</strong></div>
+              <div class="oa-track"><div class="oa-fill fill-blue" style="width:91%"></div></div>
             </div>
-
-            <a href="pepr_santenum/index.html" class="project-cta">
+            <div class="pcard-cta">
               Ouvrir le tableau de bord
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            </div>
           </div>
-        </div>
+        </a>
 
         <!-- AGROECONUM -->
-        <div class="project-card" id="agro">
-          <div class="project-card-accent accent-green"></div>
-          <div class="project-card-body">
-            <div class="project-card-header">
-              <div class="project-card-icon">🌱</div>
-              <span class="project-card-tag">France 2030 · Agri</span>
+        <a href="agroeconum/index.html" class="pcard" id="agro">
+          <div class="pcard-bar bar-green"></div>
+          <div class="pcard-body">
+            <div class="pcard-top">
+              <div class="pcard-icon-wrap wrap-green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"><path d="M12 22V12"/><path d="M5 3a9.5 9.5 0 0 0 7 9"/><path d="M19 3a9.5 9.5 0 0 1-7 9"/></svg>
+              </div>
+              <span class="pcard-tag">France 2030 · Agri</span>
             </div>
-            <div class="project-card-title">AGROECONUM</div>
-            <div class="project-card-desc">Programme de recherche Agroécologie et Numérique — France 2030. Analyse des publications HAL 2022–2026.</div>
-
-            <div class="project-metrics">
-              <div class="project-metric">
-                <div class="project-metric-value">268</div>
-                <div class="project-metric-label">Publications</div>
-              </div>
-              <div class="project-metric">
-                <div class="project-metric-value">3</div>
-                <div class="project-metric-label">Pays</div>
-              </div>
-              <div class="project-metric">
-                <div class="project-metric-value">84%</div>
-                <div class="project-metric-label">Open Access</div>
-              </div>
+            <div class="pcard-title">AGROECONUM</div>
+            <div class="pcard-desc">Programme de recherche Agroécologie et Numérique — France 2030. Analyse des publications HAL 2022–2026.</div>
+            <div class="pcard-metrics">
+              <div class="pcard-metric"><div class="pcard-metric-val">268</div><div class="pcard-metric-lbl">Publications</div></div>
+              <div class="pcard-metric"><div class="pcard-metric-val">3</div><div class="pcard-metric-lbl">Pays</div></div>
+              <div class="pcard-metric"><div class="pcard-metric-val">84%</div><div class="pcard-metric-lbl">Open Access</div></div>
             </div>
-
-            <div class="oa-bar-wrap">
-              <div class="oa-bar-label">
-                <span>Open Access</span>
-                <span style="color:var(--text);font-weight:600;">224 / 268</span>
-              </div>
-              <div class="oa-bar-track">
-                <div class="oa-bar-fill oa-green" style="width:84%"></div>
-              </div>
+            <div class="oa-wrap">
+              <div class="oa-header"><span>Open Access</span><strong>224 / 268</strong></div>
+              <div class="oa-track"><div class="oa-fill fill-green" style="width:84%"></div></div>
             </div>
-
-            <a href="agroeconum/index.html" class="project-cta">
+            <div class="pcard-cta">
               Ouvrir le tableau de bord
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            </div>
           </div>
-        </div>
+        </a>
 
         <!-- Interstices -->
-        <div class="project-card" id="inter">
-          <div class="project-card-accent accent-cyan"></div>
-          <div class="project-card-body">
-            <div class="project-card-header">
-              <div class="project-card-icon">🔭</div>
-              <span class="project-card-tag">Vulgarisation · Sciences</span>
+        <a href="interstices/index.html" class="pcard" id="inter">
+          <div class="pcard-bar bar-cyan"></div>
+          <div class="pcard-body">
+            <div class="pcard-top">
+              <div class="pcard-icon-wrap wrap-cyan">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              </div>
+              <span class="pcard-tag">Vulgarisation · Sciences</span>
             </div>
-            <div class="project-card-title">Interstices</div>
-            <div class="project-card-desc">Revue de vulgarisation scientifique en sciences du numérique. Analyse des publications HAL 2004–2025.</div>
-
-            <div class="project-metrics">
-              <div class="project-metric">
-                <div class="project-metric-value">656</div>
-                <div class="project-metric-label">Publications</div>
-              </div>
-              <div class="project-metric">
-                <div class="project-metric-value">10</div>
-                <div class="project-metric-label">Pays</div>
-              </div>
-              <div class="project-metric">
-                <div class="project-metric-value">4%</div>
-                <div class="project-metric-label">Open Access</div>
-              </div>
+            <div class="pcard-title">Interstices</div>
+            <div class="pcard-desc">Revue de vulgarisation scientifique en sciences du numérique. Analyse des publications HAL 2004–2025.</div>
+            <div class="pcard-metrics">
+              <div class="pcard-metric"><div class="pcard-metric-val">656</div><div class="pcard-metric-lbl">Publications</div></div>
+              <div class="pcard-metric"><div class="pcard-metric-val">10</div><div class="pcard-metric-lbl">Pays</div></div>
+              <div class="pcard-metric"><div class="pcard-metric-val">4%</div><div class="pcard-metric-lbl">Open Access</div></div>
             </div>
-
-            <div class="oa-bar-wrap">
-              <div class="oa-bar-label">
-                <span>Open Access</span>
-                <span style="color:var(--text);font-weight:600;">26 / 656</span>
-              </div>
-              <div class="oa-bar-track">
-                <div class="oa-bar-fill oa-cyan" style="width:4%"></div>
-              </div>
+            <div class="oa-wrap">
+              <div class="oa-header"><span>Open Access</span><strong>26 / 656</strong></div>
+              <div class="oa-track"><div class="oa-fill fill-cyan" style="width:4%"></div></div>
             </div>
-
-            <a href="interstices/index.html" class="project-cta">
+            <div class="pcard-cta">
               Ouvrir le tableau de bord
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
+            </div>
           </div>
-        </div>
+        </a>
 
       </div>
-
-      <!-- Recent / Quick access -->
-      <div class="recent-section">
-        <div class="section-title">Accès rapide</div>
-        <div class="activity-list">
-          <div class="activity-item">
-            <div class="activity-dot dot-blue"></div>
-            <span class="activity-name">PEPR Santé Numérique — Vue d'ensemble</span>
-            <span class="activity-count">323 publications · 2023–2026</span>
-            <a href="pepr_santenum/index.html">
-              <svg class="activity-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-          <div class="activity-item">
-            <div class="activity-dot dot-green"></div>
-            <span class="activity-name">AGROECONUM — Vue d'ensemble</span>
-            <span class="activity-count">268 publications · 2022–2026</span>
-            <a href="agroeconum/index.html">
-              <svg class="activity-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-          <div class="activity-item">
-            <div class="activity-dot dot-cyan"></div>
-            <span class="activity-name">Interstices — Vue d'ensemble</span>
-            <span class="activity-count">656 publications · 2004–2025</span>
-            <a href="interstices/index.html">
-              <svg class="activity-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
     </main>
   </div>
 
   <!-- FOOTER -->
   <footer class="footer">
     <span>Inria DataLake · Données issues de HAL (archives-ouvertes.fr)</span>
-    <span>Créé par <strong style="color:var(--text2)">Andréa NEBOT</strong> · Data Analyst - INRIA</span>
+    <span>Créé par <strong>Andréa NEBOT</strong> · Data Analyst — Inria</span>
   </footer>
 
 </div>
 
 <script>
-// ===== THEME =====
 const html = document.documentElement;
 const iconMoon = document.getElementById('icon-moon');
-const iconSun = document.getElementById('icon-sun');
+const iconSun  = document.getElementById('icon-sun');
 
 function toggleTheme() {
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  iconMoon.style.display = isDark ? 'none' : '';
-  iconSun.style.display  = isDark ? '' : 'none';
-  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  const dark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', dark ? 'light' : 'dark');
+  iconMoon.style.display = dark ? 'none' : '';
+  iconSun.style.display  = dark ? '' : 'none';
+  localStorage.setItem('theme', dark ? 'light' : 'dark');
 }
-
-// Restore saved theme
 const saved = localStorage.getItem('theme');
 if (saved) {
   html.setAttribute('data-theme', saved);
-  if (saved === 'light') {
-    iconMoon.style.display = 'none';
-    iconSun.style.display  = '';
-  }
+  if (saved === 'light') { iconMoon.style.display='none'; iconSun.style.display=''; }
 }
 
-// ===== SIDEBAR COLLAPSE =====
 const sidebar = document.getElementById('sidebar');
-const collapseIcon = document.getElementById('collapse-icon');
 let collapsed = false;
-
 function toggleSidebar() {
   collapsed = !collapsed;
   sidebar.classList.toggle('collapsed', collapsed);
-  collapseIcon.style.transform = collapsed ? 'rotate(180deg)' : '';
 }
 
-// ===== ACTIVE NAV ITEM =====
 function setActive(el) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   el.classList.add('active');
 }
 
-// Smooth scroll to anchor
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const id = a.getAttribute('href').slice(1);
     const el = document.getElementById(id);
-    if (el) {
-      e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior:'smooth', block:'start' }); }
   });
 });
 </script>
